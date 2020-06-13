@@ -1,0 +1,5 @@
+Create a program that allows you to input the month and day
+The program will then tell you what season the date lands on
+
+Skills used
+Switch case statements

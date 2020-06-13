@@ -1,0 +1,6 @@
+Test constructors, getter, setter, and comparison methods using temperature.
+
+Skills used
+-Getter and setter methods
+-Methods in another class
+-Using another class in the main method

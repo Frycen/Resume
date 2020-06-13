@@ -1,0 +1,5 @@
+Make a slot machine that can be played multiple times while still adding up the total winnings or losings of the session
+
+Skills used
+random
+do while loop

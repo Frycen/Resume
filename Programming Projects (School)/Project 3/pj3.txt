@@ -1,0 +1,296 @@
+Script started on 2020-02-20 18:53:31-08:00 [TERM="xterm" TTY="/dev/pts/12" COLUMNS="93" LINES="49"]
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m pewd[K[K[Kwd
+/user/imatias/cs1400/project
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m ls -l
+total 33
+-rw------- 1 imatias cpp 2127 Feb 12 22:58 Season.class
+-rw------- 1 imatias cpp 3015 Feb 12 22:56 Season.java
+-rw------- 1 imatias cpp 2430 Feb 20 18:52 SlotMachineSimulator.class
+-rw------- 1 imatias cpp 3673 Feb 20 18:52 SlotMachineSimulator.java
+-rw------- 1 imatias cpp 1456 Feb  5 22:43 Story.class
+-rw------- 1 imatias cpp 1200 Feb  5 22:36 Story.java
+-rw------- 1 imatias cpp 2752 Feb  5 22:43 [0m[00;32mpj1.txt[0m
+-rw------- 1 imatias cpp 8578 Feb 12 23:00 [00;32mpj2.txt[0m
+-rw------- 1 imatias cpp    0 Feb 20 18:53 [00;32mpj3.txt[0m
+drwx--s--x 2 imatias cpp    6 Feb 12 23:06 [01;34mproject2[0m
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat SlotMachineSimulator.java
+//Ivan matias
+//CS1400, Section 03
+//Project 3 - Slot Machine Simulation
+//Feburary 19, 2020
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class SlotMachineSimulator
+{
+   public static void main(String[] args)
+   {
+      double totalInput = 0;
+      double totalEarned = 0;
+      String repeatEnd;
+      Scanner keyboard = new Scanner(System.in);
+      Random random = new Random();
+      
+      System.out.println("Welcome to the Slot Machine Simulator!");
+      System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+      do
+      {
+         int cherryCounter = 0;
+         int orangeCounter = 0;
+         int plumCounter = 0;
+         int bellCounter = 0;
+         int melonCounter = 0;
+         int barCounter = 0;
+         double moneyWon = 0;
+
+         System.out.print("Enter the amount you would like to bet: $");
+         double userInput = keyboard.nextDouble();
+	 keyboard.nextLine();
+
+         totalInput += userInput;
+         
+         for(int i = 0; i <= 2; ++i)
+         {
+            int randomNumber = random.nextInt(5);
+
+            switch(randomNumber)
+            {
+               case 0:
+               {
+                  System.out.print("-- Cherry ");
+                  ++cherryCounter; 
+               }
+               break;
+
+               case 1:
+               {
+                  System.out.print("-- Orange ");
+                  ++orangeCounter;
+               }
+               break;
+
+               case 2:
+               {
+                  System.out.print("-- Plum ");
+                  ++plumCounter;
+               }
+               break;
+
+               case 3:
+               {
+                  System.out.print("-- Bell ");
+                  ++bellCounter;
+               }
+               break;
+
+               case 4:
+               {
+                  System.out.print("-- Melon ");
+                  ++melonCounter;
+               }
+               break;
+
+               case 5:
+               {
+                  System.out.print("-- Bar ");
+                  ++barCounter;
+               }
+               break;
+            }
+         }
+         
+         System.out.print(" --\n");
+
+         if((cherryCounter == 2) || (orangeCounter == 2) || (plumCounter == 2)
+            || (bellCounter == 2) || (melonCounter == 2) || (barCounter == 2))
+         {
+            totalEarned += (userInput * 2);
+            moneyWon = (userInput * 2);
+            System.out.printf("Great! Two matches. \nThat doubles your bet!\n");
+            System.out.printf("You win $%,.2f\n", (moneyWon));
+         }
+         
+         else if ((cherryCounter == 3) || (orangeCounter == 3) || (plumCounter == 3)
+            || (bellCounter == 3) || (melonCounter == 3) || (barCounter == 3))
+         {
+            totalEarned += (userInput * 3);
+            moneyWon = (userInput * 3);
+            System.out.printf("Wow! All three match!\nThat triples your bet!\n");
+            System.out.printf("You win $%,.2f\n", (moneyWon));
+         }
+
+         else
+            System.out.println("Sorry, none match . . .\nYou win $0.00");
+
+         System.out.println("Would you like to play again?");
+         System.out.print("Enter Y for yes or N for no: ");
+
+         repeatEnd = keyboard.nextLine();
+
+         while(!(repeatEnd.equalsIgnoreCase("Y")) && !(repeatEnd.equalsIgnoreCase("N")))
+         {
+            System.out.print("Invalid value, input again: ");
+            repeatEnd = keyboard.nextLine();
+         }
+         
+      }
+      while(repeatEnd.equalsIgnoreCase("Y"));
+
+
+      System.out.printf("You bet a total of $%,.2f\n", totalInput);
+      System.out.printf("You won a total of $%,.2f\n", totalEarned);
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m javac SlotMachineSimulator.java
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java SlotMachineSimulator
+Welcome to the Slot Machine Simulator!
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Enter the amount you would like to bet: $5
+-- Cherry -- Plum -- Orange  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: 5 y
+Enter the amount you would like to bet: $5
+-- Cherry -- Orange -- Cherry  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Orange -- Melon -- Orange  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Bell -- Cherry -- Cherry  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Cherry -- Bell -- Cherry  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Cherry -- Plum -- Cherry  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Cherry -- Bell -- Cherry  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Orange -- Melon -- Cherry  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Cherry -- Melon -- Melon  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Plum -- Bell -- Bell  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Plum -- Orange -- Bell  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Melon -- Cherry -- Bell  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Plum -- Plum -- Bell  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Bell -- Cherry -- Orange  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Cherry -- Plum -- Melon  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Bell -- Bell -- Bell  --
+Wow! All three match!
+That triples your bet!
+You win $15.00
+Would you like to play again?
+Enter Y for yes or N for no: n
+You bet a total of $80.00
+You won a total of $105.00
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java SlotMachineSimulator
+Welcome to the Slot Machine Simulator!
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Enter the amount you would like to bet: $5000
+-- Bell -- Bell -- Plum  --
+Great! Two matches. 
+That doubles your bet!
+You win $10,000.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Bell -- Plum -- Plum  --
+Great! Two matches. 
+That doubles your bet!
+You win $10.00
+Would you like to play again?
+Enter Y for yes or N for no: a
+Invalid value, input again: b
+Invalid value, input again: 123
+Invalid value, input again: y
+Enter the amount you would like to bet: $10
+-- Melon -- Orange -- Orange  --
+Great! Two matches. 
+That doubles your bet!
+You win $20.00
+Would you like to play again?
+Enter Y for yes or N for no: y
+Enter the amount you would like to bet: $5
+-- Plum -- Melon -- Cherry  --
+Sorry, none match . . .
+You win $0.00
+Would you like to play again?
+Enter Y for yes or N for no: n
+You bet a total of $5,020.00
+You won a total of $10,030.00
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-02-20 18:55:42-08:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,448 @@
+Script started on 2020-04-23 12:41:37-07:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="117" LINES="62"]
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m pwd
+/user/imatias/cs1400/project
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m ls -l
+total 151
+-rw------- 1 imatias cpp  1949 Mar  4 15:39  Diamond.class
+-rw------- 1 imatias cpp  2445 Mar  4 05:18  Diamond.java
+-rw------- 1 imatias cpp  2779 Mar  4 05:06  Diamond.javat
+-rw------- 1 imatias cpp  1996 Apr  7 12:28  DriverTest.class
+-rw------- 1 imatias cpp  1997 Apr  7 12:23  DriverTest.java
+-rw------- 1 imatias cpp  1142 Mar 17 19:26  ParkedCar
+-rw------- 1 imatias cpp  1768 Mar 19 03:47  ParkedCar.class
+-rw------- 1 imatias cpp  1675 Mar 19 03:44  ParkedCar.java
+-rw------- 1 imatias cpp   667 Mar 19 03:47  ParkingMeter.class
+-rw------- 1 imatias cpp   483 Mar 19 03:44  ParkingMeter.java
+-rw------- 1 imatias cpp  1933 Mar 19 03:47  ParkingTicket.class
+-rw------- 1 imatias cpp  1590 Mar 19 03:45  ParkingTicket.java
+-rw------- 1 imatias cpp  1709 Mar 19 03:47  ParkingTicketTest.class
+-rw------- 1 imatias cpp  1784 Mar 19 03:42  ParkingTicketTest.java
+-rw------- 1 imatias cpp  1360 Mar 19 03:47  PoliceOfficer.class
+-rw------- 1 imatias cpp  1263 Apr 23 11:59  PoliceOfficer.java
+-rw------- 1 imatias cpp  2127 Feb 12 22:58  Season.class
+-rw------- 1 imatias cpp  3015 Feb 12 22:56  Season.java
+-rw------- 1 imatias cpp  2430 Feb 20 18:53  SlotMachineSimulator.class
+-rw------- 1 imatias cpp  3673 Feb 20 18:52  SlotMachineSimulator.java
+-rw------- 1 imatias cpp  1456 Feb  5 22:43  Story.class
+-rw------- 1 imatias cpp  1200 Feb  5 22:36  Story.java
+-rw------- 1 imatias cpp  1987 Mar 12 05:13  Temperature.class
+-rw------- 1 imatias cpp  3282 Mar 12 12:17  Temperature.java
+-rw------- 1 imatias cpp  3321 Mar 12 02:30 'Temperature.java'$'\375\200\200\200\204\200'
+-rw------- 1 imatias cpp  2536 Mar 12 05:25  TemperatureDemo.class
+-rw------- 1 imatias cpp  2572 Mar 12 04:50  TemperatureDemo.java
+-rw------- 1 imatias cpp  2295 Apr 23 12:39  TextEditor.class
+-rw------- 1 imatias cpp  2004 Apr 23 12:37  TextEditor.java
+-rw------- 1 imatias cpp  1618 Apr 23 12:39  TextEditorTest.class
+-rw------- 1 imatias cpp  1687 Apr 23 12:39  TextEditorTest.java
+-rw------- 1 imatias cpp   217 Apr  6 22:47  gradeExam.java
+-rw------- 1 imatias cpp   185 Apr 23 12:22  [0m[00;32minFile.txt[0m
+-rw------- 1 imatias cpp   374 Apr  6 22:49  makeMissedArray.java
+-rw------- 1 imatias cpp  2752 Feb  5 22:43  [00;32mpj1.txt[0m
+-rw------- 1 imatias cpp  8578 Feb 12 23:00  [00;32mpj2.txt[0m
+-rw------- 1 imatias cpp  9679 Feb 20 18:55  [00;32mpj3.txt[0m
+-rw------- 1 imatias cpp 10284 Mar  4 15:41  [00;32mpj4.txt[0m
+-rw------- 1 imatias cpp  9214 Mar 12 05:25  [00;32mpj5.txt[0m
+-rw------- 1 imatias cpp 10264 Mar 19 03:47  [00;32mpj6.txt[0m
+-rw------- 1 imatias cpp  8179 Apr  7 12:31  [00;32mpj7.txt[0m
+-rw------- 1 imatias cpp     0 Apr 23 12:41  [00;32mpj8.txt[0m
+drwx--s--x 2 imatias cpp     6 Feb 12 23:06  [01;34mproject2[0m
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m cat TextEditor.java
+//Ivan Matias
+//CS1400, section 03
+//Project 8 - Text Editor
+//4/22/2020
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+class TextEditor
+{
+   public static int MAX=200;
+   private String lines[];
+   private int size;
+
+   public TextEditor(File myFile) throws FileNotFoundException
+   {
+      lines = new String[MAX];
+      size = 0;
+      Scanner sc = new Scanner(myFile);
+      while(sc.hasNext())
+      {
+         lines[size++] = sc.nextLine();
+      }
+      sc.close();
+   }
+   public void print()
+   {
+      if(size == 0)
+      {
+         System.out.println("empty file");
+      }
+      else
+      {
+      for(int i = 0; i < size; i++)
+         System.out.println(i + " : " + lines[i]);
+      }
+   }
+
+   public void find()
+   {
+      Scanner sc = new Scanner(System.in);
+      String pattern;
+      System.out.print("enter pattern: ");
+      pattern = sc.nextLine();
+      for(int i = 0; i < size; i++)
+      {
+         if(lines[i].contains(pattern))
+	 {
+	    System.out.println(i + " : " + lines[i]);
+	    int pos = lines[i].indexOf(pattern);
+	    System.out.println("position = " + pos);
+	 }
+      }
+   }
+
+   public void replace()
+   {
+      Scanner sc = new Scanner(System.in);
+      String oldPattern,newPattern;
+      System.out.print("enter old pattern to replace: ");
+      oldPattern = sc.nextLine();
+      System.out.print("enter old pattern to replace with: ");
+      newPattern = sc.nextLine();
+      for(int i = 0; i < size; i++)
+      {
+         if(lines[i].contains(oldPattern))
+	 {
+	    System.out.println(i + " : " + lines[i]);
+	    lines[i]=lines[i].replaceFirst(oldPattern, newPattern);
+	 }
+      }
+   }
+
+   public void sort()
+   {
+      String temp;
+      for(int i = 0; i < size; i++)
+      {
+         for(int j = 0; j<size; j++)
+	 {
+	    if(lines[i].compareTo(lines[j]) < 1)
+	    {
+	       temp = lines[i];
+	       lines[i] = lines[j];
+	       lines[j] = temp;
+	    }
+	 }
+      }
+      System.out.println("Array has been sorted.");
+   }
+}
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m cat TextEditor.[KTest.java
+//Ivan Matias
+//CS1400, section 03
+//Project 8 - Text Editor
+//4/23/2020
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class TextEditorTest
+{
+   public static void main(String[] args) throws FileNotFoundException
+   {
+      File newFile = new File("inFile.txt");
+      TextEditor te = new TextEditor(newFile);
+      Scanner sc = new Scanner(System.in);
+      char userChoice;
+      do
+      {
+         menu();
+	 System.out.print("Your choice: ");
+	 userChoice = sc.next().charAt(0);
+	 switch(userChoice)
+	 {
+	    case 'p':
+	    case 'P':
+	    {
+	       System.out.println("");
+	       te.print();
+	       System.out.println("");
+	       break;
+	    }
+	    case 'f':
+	    case 'F':
+	    {
+	       System.out.println("");
+	       te.find();
+	       System.out.println("");
+	       break;
+	    }
+	    case 'r':
+	    case 'R':
+	    {
+	       System.out.println("");
+	       te.replace();
+	       System.out.println("");
+	       break;
+	    }
+	    case 's':
+	    case 'S':
+	    {
+	       System.out.println("");
+	       te.sort();
+	       System.out.println("");
+	       break;
+	    }
+	    case 'q':
+	    case 'Q':
+	    {
+	       break;
+	    }
+	    default:
+	       System.out.println("Invalid choice!!");
+	 }
+      }  while(userChoice!='q');
+      System.out.println("bye");
+   }
+
+   private static void menu()
+   {
+      System.out.println("[p]rint input file with line numbers");
+      System.out.println("[f]ind the leftmost occurrencese of pattern for all lines");
+      System.out.println("[r]eplace all occurrences of old by new");
+      System.out.println("[s]ort the input file");
+      System.out.println("[q]uit the editor");
+   }
+}
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m javac TextEditorTest.java
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java TextEditorTest
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: p
+
+0 : Hello World
+1 : This is a test file for
+2 : CS 1400 Programming
+3 : Project #8
+4 : 4/16/2020
+5 : study Java the following days:
+6 : Monday
+7 : Tuesday
+8 : Wednesday
+9 : Thursday
+10 : Friday
+11 : Monday through Friday
+12 : weekdays only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: f
+
+enter pattern: day
+5 : study Java the following days:
+position = 25
+6 : Monday
+position = 3
+7 : Tuesday
+position = 4
+8 : Wednesday
+position = 6
+9 : Thursday
+position = 5
+10 : Friday
+position = 3
+11 : Monday through Friday
+position = 3
+12 : weekdays only
+position = 4
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: r
+
+enter old pattern to replace: day
+enter old pattern to replace with: ----
+5 : study Java the following days:
+6 : Monday
+7 : Tuesday
+8 : Wednesday
+9 : Thursday
+10 : Friday
+11 : Monday through Friday
+12 : weekdays only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: p
+
+0 : Hello World
+1 : This is a test file for
+2 : CS 1400 Programming
+3 : Project #8
+4 : 4/16/2020
+5 : study Java the following ----s:
+6 : Mon----
+7 : Tues----
+8 : Wednes----
+9 : Thurs----
+10 : Fri----
+11 : Mon---- through Friday
+12 : week----s only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: r
+
+enter old pattern to replace: ----
+enter old pattern to replace with: --
+5 : study Java the following ----s:
+6 : Mon----
+7 : Tues----
+8 : Wednes----
+9 : Thurs----
+10 : Fri----
+11 : Mon---- through Friday
+12 : week----s only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: p
+
+0 : Hello World
+1 : This is a test file for
+2 : CS 1400 Programming
+3 : Project #8
+4 : 4/16/2020
+5 : study Java the following --s:
+6 : Mon--
+7 : Tues--
+8 : Wednes--
+9 : Thurs--
+10 : Fri--
+11 : Mon-- through Friday
+12 : week--s only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: s
+
+Array has been sorted.
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: p
+
+0 : 4/16/2020
+1 : CS 1400 Programming
+2 : Fri--
+3 : Hello World
+4 : Mon--
+5 : Mon-- through Friday
+6 : Project #8
+7 : This is a test file for
+8 : Thurs--
+9 : Tues--
+10 : Wednes--
+11 : study Java the following --s:
+12 : week--s only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: f
+
+enter pattern: daisy
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: a
+Invalid choice!!
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: *86
+Invalid choice!!
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: r
+
+enter old pattern to replace: --
+enter old pattern to replace with: day
+2 : Fri--
+4 : Mon--
+5 : Mon-- through Friday
+8 : Thurs--
+9 : Tues--
+10 : Wednes--
+11 : study Java the following --s:
+12 : week--s only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: p
+
+0 : 4/16/2020
+1 : CS 1400 Programming
+2 : Friday
+3 : Hello World
+4 : Monday
+5 : Monday through Friday
+6 : Project #8
+7 : This is a test file for
+8 : Thursday
+9 : Tuesday
+10 : Wednesday
+11 : study Java the following days:
+12 : weekdays only
+
+[p]rint input file with line numbers
+[f]ind the leftmost occurrencese of pattern for all lines
+[r]eplace all occurrences of old by new
+[s]ort the input file
+[q]uit the editor
+Your choice: q
+bye
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-04-23 12:45:21-07:00 [COMMAND_EXIT_CODE="0"]

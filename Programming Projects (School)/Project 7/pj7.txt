@@ -1,0 +1,253 @@
+Script started on 2020-04-07 12:28:22-07:00 [TERM="xterm" TTY="/dev/pts/10" COLUMNS="117" LINES="63"]
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m pwd
+/user/imatias/cs1400/project
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m ls -l
+total 131
+-rw------- 1 imatias cpp  1949 Mar  4 15:39  Diamond.class
+-rw------- 1 imatias cpp  2445 Mar  4 05:18  Diamond.java
+-rw------- 1 imatias cpp  2779 Mar  4 05:06  Diamond.javat
+-rw------- 1 imatias cpp  1996 Apr  7 12:23  DriverTest.class
+-rw------- 1 imatias cpp  1997 Apr  7 12:23  DriverTest.java
+-rw------- 1 imatias cpp  1142 Mar 17 19:26  ParkedCar
+-rw------- 1 imatias cpp  1768 Mar 19 03:47  ParkedCar.class
+-rw------- 1 imatias cpp  1675 Mar 19 03:44  ParkedCar.java
+-rw------- 1 imatias cpp   667 Mar 19 03:47  ParkingMeter.class
+-rw------- 1 imatias cpp   483 Mar 19 03:44  ParkingMeter.java
+-rw------- 1 imatias cpp  1933 Mar 19 03:47  ParkingTicket.class
+-rw------- 1 imatias cpp  1590 Mar 19 03:45  ParkingTicket.java
+-rw------- 1 imatias cpp  1709 Mar 19 03:47  ParkingTicketTest.class
+-rw------- 1 imatias cpp  1784 Mar 19 03:42  ParkingTicketTest.java
+-rw------- 1 imatias cpp  1360 Mar 19 03:47  PoliceOfficer.class
+-rw------- 1 imatias cpp  1263 Apr  6 22:01  PoliceOfficer.java
+-rw------- 1 imatias cpp  2127 Feb 12 22:58  Season.class
+-rw------- 1 imatias cpp  3015 Feb 12 22:56  Season.java
+-rw------- 1 imatias cpp  2430 Feb 20 18:53  SlotMachineSimulator.class
+-rw------- 1 imatias cpp  3673 Feb 20 18:52  SlotMachineSimulator.java
+-rw------- 1 imatias cpp  1456 Feb  5 22:43  Story.class
+-rw------- 1 imatias cpp  1200 Feb  5 22:36  Story.java
+-rw------- 1 imatias cpp  1987 Mar 12 05:13  Temperature.class
+-rw------- 1 imatias cpp  3282 Mar 12 12:17  Temperature.java
+-rw------- 1 imatias cpp  3321 Mar 12 02:30 'Temperature.java'$'\375\200\200\200\204\200'
+-rw------- 1 imatias cpp  2536 Mar 12 05:25  TemperatureDemo.class
+-rw------- 1 imatias cpp  2572 Mar 12 04:50  TemperatureDemo.java
+-rw------- 1 imatias cpp   217 Apr  6 22:47  gradeExam.java
+-rw------- 1 imatias cpp   374 Apr  6 22:49  makeMissedArray.java
+-rw------- 1 imatias cpp  2752 Feb  5 22:43  [0m[00;32mpj1.txt[0m
+-rw------- 1 imatias cpp  8578 Feb 12 23:00  [00;32mpj2.txt[0m
+-rw------- 1 imatias cpp  9679 Feb 20 18:55  [00;32mpj3.txt[0m
+-rw------- 1 imatias cpp 10284 Mar  4 15:41  [00;32mpj4.txt[0m
+-rw------- 1 imatias cpp  9214 Mar 12 05:25  [00;32mpj5.txt[0m
+-rw------- 1 imatias cpp 10264 Mar 19 03:47  [00;32mpj6.txt[0m
+-rw------- 1 imatias cpp     0 Apr  7 12:28  [00;32mpj7.txt[0m
+drwx--s--x 2 imatias cpp     6 Feb 12 23:06  [01;34mproject2[0m
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat DriverTest.java
+//Ivan Matias
+//CS1400, section 03
+//Project 7 - Driver License Exam
+//April 6, 2020
+
+import java.util.Scanner;
+
+public class DriverTest
+{
+   public static void main(String[] args)
+   {
+      Scanner kb = new Scanner(System.in);
+      final int MAX_QUESTIONS = 20;
+      char[] userAnswers = new char[MAX_QUESTIONS];
+      char[] masterKey = {'A','A','A','A','A','B','B','B','B','B','C','C','C','C','C','D','D','D','D','D'};
+      String list = "", grade = "";
+
+      System.out.println("Enter your answers to the exam questions.");
+      for(int i = 0; i < userAnswers.length; ++i)
+      {
+         System.out.print("Question " + (i+1) + ": ");
+	 String input = kb.nextLine().toUpperCase();
+	 userAnswers[i] = input.charAt(0);
+      }
+
+      int incorrect = gradeExam(masterKey, userAnswers);
+      int correct = MAX_QUESTIONS - incorrect;
+      int[] missed = new int[incorrect];
+      missed = makeMissedArray(masterKey, userAnswers, incorrect);
+      
+      for(int j = 0; j< incorrect; ++j)
+         list += missed[j] + " ";
+      if(correct >= 15)
+         grade = "passed";
+      else
+         grade = "failed";
+      System.out.println("** Correct answers: " + correct);
+      System.out.println("** Incorrect answers: " + incorrect);
+      System.out.println("** You " + grade + " the exam.");
+      System.out.println("You missed the following questions: \n" + list);
+   }
+
+   public static int gradeExam(char[] correct, char[] student)
+   {
+      int wrong = 0;
+      for(int i = 0; i < correct.length; ++i)
+      {
+         if(student[i] != correct[i])
+         {
+            ++wrong;
+         }
+      }
+      return wrong;
+   }
+   
+   public static int[] makeMissedArray(char[] correct, char[] student, int numIncorrect)
+   {
+      int[] listWrong = new int[numIncorrect];
+      int j = 0;
+      for(int i = 0; i < correct.length; ++i)
+      {
+         if(student[i]!=correct[i])
+         {
+            listWrong[j]+=(i+1);
+	    ++j;
+         }
+      }
+      return listWrong;
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m javac DriverTest.java
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java DriverTest
+Enter your answers to the exam questions.
+Question 1: B
+Question 2: B
+Question 3: B
+Question 4: B
+Question 5: C
+Question 6: C
+Question 7: C
+Question 8: C
+Question 9: C
+Question 10: C
+Question 11: A
+Question 12: A
+Question 13: A
+Question 14: A
+Question 15: A
+Question 16: A
+Question 17: A
+Question 18: A
+Question 19: A
+Question 20: A
+** Correct answers: 0
+** Incorrect answers: 20
+** You failed the exam.
+You missed the following questions: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java DriverTest
+Enter your answers to the exam questions.
+Question 1: A
+Question 2: A
+Question 3: A
+Question 4: a
+Question 5: a
+Question 6: b
+Question 7: b
+Question 8: b
+Question 9: B
+Question 10: B
+Question 11: c
+Question 12: c
+Question 13: C
+Question 14: C
+Question 15: A
+Question 16: A
+Question 17: A
+Question 18: A
+Question 19: A
+Question 20: A
+** Correct answers: 14
+** Incorrect answers: 6
+** You failed the exam.
+You missed the following questions: 
+15 16 17 18 19 20 
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java DriverTest
+Enter your answers to the exam questions.
+Question 1: A
+Question 2: A
+Question 3: A
+Question 4: A
+Question 5: A
+Question 6: B
+Question 7: B
+Question 8: B
+Question 9: B
+Question 10: B
+Question 11: C
+Question 12: C
+Question 13: C
+Question 14: C
+Question 15: C
+Question 16: d
+Question 17: D
+Question 18: d
+Question 19: D
+Question 20: d
+** Correct answers: 20
+** Incorrect answers: 0
+** You passed the exam.
+You missed the following questions: 
+
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java DriverTest
+Enter your answers to the exam questions.
+Question 1: A
+Question 2: A
+Question 3: A
+Question 4: A
+Question 5: A
+Question 6: B
+Question 7: B
+Question 8: B
+Question 9: B
+Question 10: B
+Question 11: C
+Question 12: C
+Question 13: C
+Question 14: C
+Question 15: C
+Question 16: a
+Question 17: a
+Question 18: a
+Question 19: a
+Question 20: a
+** Correct answers: 15
+** Incorrect answers: 5
+** You passed the exam.
+You missed the following questions: 
+16 17 18 19 20 
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java DriverTest
+Enter your answers to the exam questions.
+Question 1: a
+Question 2: A
+Question 3: a
+Question 4: a
+Question 5: A
+Question 6: b
+Question 7: b
+Question 8: b
+Question 9: B
+Question 10: b
+Question 11: C
+Question 12: c
+Question 13: c
+Question 14: C
+Question 15: C
+Question 16: D
+Question 17: a
+Question 18: a
+Question 19: a
+Question 20: a
+** Correct answers: 16
+** Incorrect answers: 4
+** You passed the exam.
+You missed the following questions: 
+17 18 19 20 
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-04-07 12:31:04-07:00 [COMMAND_EXIT_CODE="0"]

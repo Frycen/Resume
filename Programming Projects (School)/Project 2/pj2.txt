@@ -1,0 +1,232 @@
+Script started on 2020-02-12 22:57:34-08:00 [TERM="xterm" TTY="/dev/pts/18" COLUMNS="117" LINES="62"]
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m pew[K[Kwe[Kd
+/user/imatias/cs1400/project
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m ls =[K-l
+total 16
+-rw------- 1 imatias cpp 2127 Feb 12 22:56 Season.class
+-rw------- 1 imatias cpp 3015 Feb 12 22:56 Season.java
+-rw------- 1 imatias cpp 1456 Feb  5 22:43 Story.class
+-rw------- 1 imatias cpp 1200 Feb  5 22:36 Story.java
+-rw------- 1 imatias cpp 2752 Feb  5 22:43 [0m[00;32mpj1.txt[0m
+-rw------- 1 imatias cpp    0 Feb 12 22:57 [00;32mpj2.txt[0m
+drwx--s--x 2 imatias cpp    6 Feb 12 21:06 [01;34mproject2[0m
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m cat Season.java
+//Ivan Matias
+//CS 1400, Section 3
+//Project 2 - determining the seasons
+//Feb 07, 2020
+
+import java.util.Scanner;
+
+public class Season
+{
+   public static void main (String[] args)
+   {
+      Scanner kb = new Scanner(System.in);
+      int days = 1;
+      String daysPhrase = "";
+
+      System.out.print("Enter month (1-12): ");
+      int month = kb.nextInt();
+      kb.nextLine();
+
+      if(month >= 1 && month <= 12)
+      {
+         switch (month)
+         {
+	    case 1:
+	    case 3:
+	    case 5:
+	    case 7:
+	    case 8:
+	    case 10:
+	    case 12:
+	    {
+	       daysPhrase = "Enter day (1-31): ";
+	    }
+	    break;
+
+	    case 4:
+	    case 6:
+	    case 9:
+	    case 11:
+	    {
+	       daysPhrase = "Enter day (1-30): ";
+	    }
+	    break;
+
+
+	    case 2:
+	    {
+	       daysPhrase = "Enter day (1-29): ";
+	    }
+         }
+      }
+
+      else
+      {
+         System.out.print("Invalid Month!\n");
+	 return;
+      }
+
+      System.out.print(daysPhrase);
+      days = kb.nextInt();
+
+      if(days <= 0)
+      {
+         System.out.print("This date isn't real!\n");
+	 return;
+      }
+      else if(month >= 1 && month <= 3)
+      {
+         if ((month == 1 && days >31) || (month == 2 && days >28) || (month == 3 && days>31))
+         {
+            System.out.print("This date does not exist!\n");
+            return;
+         }
+         else if(month == 3 && days > 20)
+	    System.out.print(month + "/" + days + " is in the Spring season.\n");
+	 else
+	    System.out.print(month + "/" + days + " is in the Winter season.\n");
+      }
+      else if(month >= 4 && month <= 6)
+      {
+         if ((month == 4 && days >30) || (month == 5 && days >31) || (month == 6 && days>30))
+         {
+         System.out.print("This date does not exist!\n");
+         return;
+         }
+         else if (month == 6 && days > 20)
+	    System.out.print(month + "/" + days + " is in the Summer season.\n");
+         else
+	    System.out.print(month + "/" + days + " is in the Spring season.\n");
+      }
+      else if (month >= 7 && month <= 9)
+      {
+         if ((month == 7 && days >31) || (month == 8 && days >31) || (month == 9 && days>30))
+         {
+            System.out.print("This date does not exist!\n");
+            return;
+         }
+         else if ( month == 9 && days > 20)
+	    System.out.print(month + "/" + days + " is in the Fall season.\n");
+	 else
+	    System.out.print(month + "/" + days + " is in the Summer season.\n");
+      }
+      else if(month >= 10 && month <=12)
+      {
+         if ((month == 10 && days >31) || (month == 11 && days >30) || (month == 12 && days>31))
+         {
+            System.out.print("This date does not exist!\n");
+            return;
+         }
+
+         else if (month == 12 && days > 20)
+            System.out.print(month + "/" + days + " is in the Winter season.\n");
+         else
+	    System.out.print(month + "/" + days + " is in the Fall season.\n");
+      }
+      else
+      {
+         System.out.print("This date isn't real!\n");
+	 return;
+      }
+   }
+}
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m javac Season.java
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 1
+Enter day (1-31): 5
+1/5 is in the Winter season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 2
+Enter day (1-29): 5
+2/5 is in the Winter season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 4
+Enter day (1-30): 10
+4/10 is in the Spring season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 5
+Enter day (1-31): 10
+5/10 is in the Spring season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 7
+Enter day (1-31): 15
+7/15 is in the Summer season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 8
+Enter day (1-31): 15
+8/15 is in the Summer season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 10
+Enter day (1-31): 20
+10/20 is in the Fall season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 11
+Enter day (1-30): 20
+11/20 is in the Fall season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 3
+Enter day (1-31): 20
+3/20 is in the Winter season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 3
+Enter day (1-31): 21
+3/21 is in the Spring season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 6
+Enter day (1-30): 20
+6/20 is in the Spring season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 21  9
+Enter day (1-30): 20
+9/20 is in the Summer season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 9
+Enter day (1-30): 21
+9/21 is in the Fall season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 12
+Enter day (1-31): 20
+12/20 is in the Fall season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 21
+Invalid Month!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 12
+Enter day (1-31): 21
+12/21 is in the Winter season.
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 0
+Invalid Month!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): -3
+Invalid Month!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m ka[K[Kjava Season
+Enter month (1-12): 13
+Invalid Month!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 1
+Enter day (1-31): 0
+This date isn't real!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 1
+Enter day (1-31): -5
+This date isn't real!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 2
+Enter day (1-29): 29
+This date does not exist!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 6
+Enter day (1-30): 31
+This date does not exist!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Season
+Enter month (1-12): 12
+Enter day (1-31): 32
+This date does not exist!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-02-12 23:00:08-08:00 [COMMAND_EXIT_CODE="0"]

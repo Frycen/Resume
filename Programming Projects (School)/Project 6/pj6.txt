@@ -1,0 +1,411 @@
+Script started on 2020-03-19 03:46:17-07:00 [TERM="xterm" TTY="/dev/pts/5" COLUMNS="117" LINES="62"]
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m pwq[Kd
+/user/imatias/cs1400/project
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m ls
+ Diamond.class        ParkingTicket.class       SlotMachineSimulator.class                     TemperatureDemo.java
+ Diamond.java         ParkingTicket.java        SlotMachineSimulator.java                      [0m[00;32mpj1.txt[0m
+ Diamond.javat        ParkingTicketTest.class   Story.class                                    [00;32mpj2.txt[0m
+ ParkedCar            ParkingTicketTest.java    Story.java                                     [00;32mpj3.txt[0m
+ ParkedCar.class      PoliceOfficer.class       Temperature.class                              [00;32mpj4.txt[0m
+ ParkedCar.java       PoliceOfficer.java        Temperature.java                               [00;32mpj5.txt[0m
+ ParkingMeter.class   Season.class             'Temperature.java'$'\375\200\200\200\204\200'   [00;32mpj6.txt[0m
+ ParkingMeter.java    Season.java               TemperatureDemo.class                          [01;34mproject2[0m
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat ParkedCar.java
+//Ivan Matias
+//CS1400, section 03
+//Project 6 - Parking Ticket Simulator
+//3-17-2020
+
+public class ParkedCar
+{
+   private String make;
+   private String model;
+   private String color;
+   private String licenseNumber;
+   private int minutesParked;
+   
+   public ParkedCar(String mk, String mod, String col, String lic, int min)
+   {
+      make = mk;
+      model = mod;
+      color = col;
+      licenseNumber = lic;
+      minutesParked = min;
+   }
+
+   public ParkedCar(ParkedCar obj2)
+   {
+      make = obj2.make;
+      model = obj2.model;
+      color = obj2.color;
+      licenseNumber = obj2.licenseNumber;
+      minutesParked = obj2.minutesParked;
+   }
+
+   public void setMake(String mk)
+   {
+      make = mk;
+   }
+
+   public void setModel(String mod)
+   {
+      model = mod;
+   }
+
+   public void setColor(String col)
+   {
+      color = col;
+   }
+
+   public void setLicense(String lic)
+   {
+      licenseNumber = lic;
+   }
+
+   public void setMinutes(int min)
+   {
+      minutesParked = min;
+   }
+
+   public String getMake()
+   {
+      return make;
+   }
+
+   public String getModel()
+   {
+      return model;
+   }
+
+   public String getColor()
+   {
+      return color;
+   }
+
+   public String getLicNum()
+   {
+      return licenseNumber;
+   }
+
+   public int getMinutes()
+   {
+      return minutesParked;
+   }
+
+   public String toString()
+   {
+      String result = "";
+      
+      result +="Car Data --" + "\n";
+      result +="Make: " + make + "\n";
+      result += "Model: " + model + "\n";
+      result += "Color: " + color + "\n";
+      result += "License Number: " + licenseNumber + "\n";
+      result += "Minutes Parked: " + minutesParked;
+
+      return(result);
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat ParkingMeter.java
+//Ivan Matias
+//CS1400, section 03
+//Project 6 - Parking Ticket Simulator
+//3-17-2020
+
+public class ParkingMeter
+{
+   private int parkingMinutes;
+
+   public ParkingMeter(int minutes)
+   {
+      parkingMinutes = minutes;
+   }
+
+   public int getMinutesPurchased()
+   {
+      return parkingMinutes;
+   }
+
+   public void setMinutesPurchased(int minutes)
+   {
+      parkingMinutes = minutes;
+   }
+
+   public String toString()
+   {
+      return "Minutes Parked: " + parkingMinutes;
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat ParkingTicket.java
+//Ivan Matias
+//CS1400, section 03
+//Project 06 - Parking Ticket Simulator
+//3-17-20
+
+public class ParkingTicket
+{
+   private ParkedCar parkedCar;
+   private PoliceOfficer policeOfficer;
+   private double fineAmount;
+   private int minutes;
+
+   public final double FIRST_HOUR_FINE = 25.0;
+   public final double ADDITIONAL_HOUR_FINE = 10.0;
+
+   public ParkingTicket (ParkedCar car, PoliceOfficer officer, int min)
+   {
+      parkedCar = car;
+      policeOfficer = officer;
+      minutes = min;
+      computeFine();
+   }
+
+   private void computeFine()
+   {
+      double timeInHours = minutes / 60.0;
+      int intHours = (int) timeInHours;
+
+      fineAmount = FIRST_HOUR_FINE;
+      fineAmount += (intHours * ADDITIONAL_HOUR_FINE);
+   }
+
+   public ParkedCar getCar()
+   {
+      return parkedCar;
+   }
+
+   public void setCar(ParkedCar car)
+   {
+      parkedCar = car;
+   }
+
+   public PoliceOfficer getOfficer()
+   {
+      return policeOfficer;
+   }
+
+   public void setOfficer(PoliceOfficer officer)
+   {
+      policeOfficer = officer;
+   }
+
+   public double getFine()
+   {
+      return fineAmount;
+   }
+
+   public void setFine(double fine)
+   {
+      fineAmount = fine;
+   }
+
+   public int getMinutes()
+   {
+      return minutes;
+   }
+
+   public void setMinutes(int min)
+   {
+      minutes = min;
+   }
+
+   public String toString()
+   {
+      String result = "";
+
+      result += parkedCar + "\n";
+      result += policeOfficer + "\n";
+      result += "Minutes Illegally Parked-- " + minutes + "\n";
+      result += "Fine-- $" + String.format("%.2f", fineAmount);
+
+      return result;
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat PoliceOfficer.java
+//Ivan Matias
+//CS1400, section 03
+//Project 6 - Parking Ticket Simulator
+//3-17-2020
+
+public class PoliceOfficer
+{
+   private String name;
+   private String badgeNumber;
+
+   public PoliceOfficer(String n, String bn)
+   {
+      name = n;
+      badgeNumber = bn;
+   }
+
+   public PoliceOfficer(PoliceOfficer officer2)
+   {
+      name = officer2.name;
+      badgeNumber = officer2.badgeNumber;
+   }
+
+   public void setName(String n)
+   {
+      name = n;
+   }
+
+   public void setBadge(String bn)
+   {
+      badgeNumber = bn;
+   }
+
+   public String getName()
+   {
+      return name;
+   }
+
+   public String getBadge()
+   {
+      return badgeNumber;
+   }
+
+   public ParkingTicket patrol(ParkedCar parkedCar, ParkingMeter parkingMeter)
+   {
+      ParkingTicket parkingTicket = null;
+
+      int numberOfIllegalMinutes = parkedCar.getMinutes() - parkingMeter.getMinutesPurchased();
+
+      if(numberOfIllegalMinutes > 0)
+      {
+         parkingTicket = new ParkingTicket(parkedCar, this, numberOfIllegalMinutes);
+      }
+
+      return parkingTicket;
+   }
+
+   public String toString()
+   {
+      String result = "";
+
+      result += "Officer Data--" + "\n";
+      result += "Name: " + name + "\n";
+      result += "BadgeNumber: " + badgeNumber;
+
+      return result;
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m cat ParkingTicketTest.java
+//Ivan Matias
+//CS1400, section 3
+//Project 6 - Parking Ticket Simulator
+//3-17-2020
+
+public class ParkingTicketTest
+{
+   public static void main(String[] args)
+   {
+      System.out.println("\n. . . set minutes purchased to 60, and");
+      System.out.println("parked for 125 minutes. . .");
+
+      ParkedCar car = new ParkedCar("Volkswagen", "2002", "Red", "3RHZ147", 125);
+
+      ParkingMeter meter = new ParkingMeter(60);
+
+      PoliceOfficer officer = new PoliceOfficer("Joe Friday", "4788");
+
+      ParkingTicket ticket = officer.patrol(car, meter);
+
+      if(ticket != null)
+         System.out.println(ticket);
+      else
+         System.out.println("No crimes committed!");
+      
+      System.out.println("\n. . . change minutes parked to 60");
+      car.setMinutes(60);
+
+      ticket = officer.patrol(car, meter);
+
+      if(ticket != null)
+         System.out.println(ticket);
+      else
+         System.out.println("No crimes committed!");
+      
+      System.out.println("\n. . . change minutes parked to 61");
+      car.setMinutes(61);
+
+      ticket = officer.patrol(car, meter);
+
+      if(ticket != null)
+         System.out.println(ticket);
+      else
+         System.out.println("No crimes committed!");
+
+      
+      System.out.println("\n. . . change car model to 2010. . .");
+      car.setModel("2010");
+
+      ticket = officer.patrol(car, meter);
+
+      if(ticket != null)
+         System.out.println(ticket);
+      else
+         System.out.println("No crimes committed!");
+
+      System.out.print("\n. . . change minutes purchased to 70. . .");
+      meter.setMinutesPurchased(70);
+
+      ticket = officer.patrol(car, meter);
+
+      if(ticket != null)
+         System.out.println(ticket);
+      else
+         System.out.println("\nNo crimes committed!");
+   }
+}
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m javac ParkingTest[K[K[KicketTest.java
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m java ParkingTicketTest
+
+. . . set minutes purchased to 60, and
+parked for 125 minutes. . .
+Car Data --
+Make: Volkswagen
+Model: 2002
+Color: Red
+License Number: 3RHZ147
+Minutes Parked: 125
+Officer Data--
+Name: Joe Friday
+BadgeNumber: 4788
+Minutes Illegally Parked-- 65
+Fine-- $35.00
+
+. . . change minutes parked to 60
+No crimes committed!
+
+. . . change minutes parked to 61
+Car Data --
+Make: Volkswagen
+Model: 2002
+Color: Red
+License Number: 3RHZ147
+Minutes Parked: 61
+Officer Data--
+Name: Joe Friday
+BadgeNumber: 4788
+Minutes Illegally Parked-- 1
+Fine-- $25.00
+
+. . . change car model to 2010. . .
+Car Data --
+Make: Volkswagen
+Model: 2010
+Color: Red
+License Number: 3RHZ147
+Minutes Parked: 61
+Officer Data--
+Name: Joe Friday
+BadgeNumber: 4788
+Minutes Illegally Parked-- 1
+Fine-- $25.00
+
+. . . change minutes purchased to 70. . .
+No crimes committed!
+]0;imatias@abbott:~/cs1400/project[01;32mimatias@abbott[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-03-19 03:47:53-07:00 [COMMAND_EXIT_CODE="0"]

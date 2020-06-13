@@ -1,0 +1,67 @@
+Script started on 2020-02-05 22:40:31-08:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="117" LINES="62"]
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m pwd
+/user/imatias/cs1400/project
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m ls -l
+total 5
+-rw------- 1 imatias cpp 1456 Feb  5 22:36 Story.class
+-rw------- 1 imatias cpp 1200 Feb  5 22:36 Story.java
+-rw------- 1 imatias cpp    0 Feb  5 22:40 [0m[00;32mpj1.txt[0m
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m cat Story.java
+import java.util.Scanner;
+public class Story
+{
+	public static void main(String[] args)
+	{
+		//Ivan Matias
+		//CS 1400, section 3
+		//Project 1 - Word Game
+		//January 31, 2020
+
+		Scanner kb = new Scanner(System.in);
+		
+		System.out.print("Enter a name: ");
+		String name = kb.nextLine();
+
+		System.out.print("Enter an age number: ");
+		int age = kb.nextInt();
+		kb.nextLine();
+
+		System.out.print("Enter the name of a city: ");
+		String nameCity = kb.nextLine();
+
+		System.out.print("Enter the name of a college: ");
+		String nameCollege = kb.nextLine();
+
+		System.out.print("Enter a profession: ");
+		String profession = kb.nextLine();
+
+		System.out.print("Enter a type of animal: ");
+		String animalType = kb.nextLine();
+
+		System.out.print("Enter a pet name: ");
+		String animalName = kb.nextLine();
+		
+		System.out.print("There once was a person named " + name 
+				+ " who lived in " + nameCity + ". At the age of "
+				+ age + ", " + name + " went to college at "
+				+ nameCollege + ". " + name
+ 				+ " graduated and went to work as a " + profession 
+				+ ". Then, " + name + " adopted a(n) " + animalType
+				+ " named " + animalName 
+				+ ". They both lived happily ever after!\n");
+	}
+}
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m javac Story.java
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m java Story
+Enter a name: Ivan
+Enter an age number: 19
+Enter the name of a city: Los Angeles
+Enter the name of a college: Cal Poly Pop mona
+Enter a profession: C Software Engineer
+Enter a type of animal: dog
+Enter a pet name: Pipo
+There once was a person named Ivan who lived in Los Angeles. At the age of 19, Ivan went to college at Cal Poly Pomona. Ivan graduated and went to work as a Software Engineer. Then, Ivan adopted a(n) dog named Pipo. They both lived happily ever after!
+]0;imatias@costello:~/cs1400/project[01;32mimatias@costello[01;34m ~/cs1400/project $[00m exit
+exit
+
+Script done on 2020-02-05 22:43:40-08:00 [COMMAND_EXIT_CODE="0"]
